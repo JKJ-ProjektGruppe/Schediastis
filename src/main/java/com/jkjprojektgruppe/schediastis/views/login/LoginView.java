@@ -1,11 +1,14 @@
 package com.jkjprojektgruppe.schediastis.views.login;
 
-
+import com.vaadin.flow.component.ComponentUtil;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.tabs.Tab;
+import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.jkjprojektgruppe.schediastis.views.main.MainView;
@@ -26,6 +29,7 @@ public class LoginView extends Div {
     private TextField usernameTextField;
     private TextField passwordTextField;
     private VerticalLayout mainpanel = new VerticalLayout();
+    private final Button loginButton = new Button("Login");
 
 
     public LoginView() {
@@ -40,9 +44,7 @@ public class LoginView extends Div {
     public void LoginPanel()
     {
         defaultPanel();
-        add(mainpanel);
-        HorizontalLayout buttonLayout = new HorizontalLayout();
-        Button loginButton = new Button("Login");
+        add(mainpanel);HorizontalLayout buttonLayout = new HorizontalLayout();
         Button createAccountButton = new Button("Create New Account");
         buttonLayout.add(loginButton);
         buttonLayout.add(createAccountButton);
@@ -52,9 +54,9 @@ public class LoginView extends Div {
             {
                 username = usernameTextField.getValue();
                 password = passwordTextField.getValue();
-                if(accountVarified(username, password))
+                if(accountVerified(username, password))
                 {
-                    RouterLink link = new RouterLink("Main", MainView.class);
+                    UI.getCurrent().navigate(MainView.class); //Goes to MainView
                 }
                 else
                 {
@@ -130,7 +132,7 @@ public class LoginView extends Div {
         mainpanel.add(passwordLayout);
     }
 
-    public boolean accountVarified(String user, String pass)
+    public boolean accountVerified(String user, String pass)
     {
         return true;
     }
