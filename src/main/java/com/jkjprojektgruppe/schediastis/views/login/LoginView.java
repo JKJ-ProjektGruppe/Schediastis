@@ -6,10 +6,12 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.jkjprojektgruppe.schediastis.views.main.MainView;
+import com.vaadin.flow.router.RouteAlias;
 
 @Route(value = "login", layout = MainView.class)
 @PageTitle("Login")
 @CssImport("./styles/views/about/about-view.css")
+@RouteAlias(value = "")
 public class LoginView extends Div {
 
     public LoginView() {
