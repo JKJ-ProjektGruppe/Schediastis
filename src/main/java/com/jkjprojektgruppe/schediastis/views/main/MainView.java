@@ -17,12 +17,14 @@ import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.tabs.TabsVariant;
 import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
 import com.jkjprojektgruppe.schediastis.views.helloworld.HelloWorldView;
 import com.jkjprojektgruppe.schediastis.views.about.AboutView;
 import com.vaadin.flow.theme.lumo.Lumo;
+import com.jkjprojektgruppe.schediastis.views.login.LoginView;
 
 /**
  * The main view is a top-level placeholder for other views.
@@ -30,7 +32,8 @@ import com.vaadin.flow.theme.lumo.Lumo;
 @JsModule("./styles/shared-styles.js")
 @Theme(value = Lumo.class, variant = Lumo.LIGHT)
 @CssImport("./styles/views/main/main-view.css")
-@PWA(name = "My Project", shortName = "My Project", enableInstallPrompt = false)
+@PWA(name = "Schediastis", shortName = "Schediastis", enableInstallPrompt = false)
+@Route(value = "Main")
 public class MainView extends AppLayout {
 
     private final Tabs menu;
