@@ -1,0 +1,42 @@
+package com.jkjprojektgruppe.schediastis.views.items;
+
+public class Item {
+    private String name;
+    private long start; //might change to string
+    private long end; //might change to string?
+    private String details;
+    private String location;
+    private String people;
+
+    public Item(String name, long start, long end,
+                String details, String location, String people){
+        this.name=(name == null) ? "" : name;
+        this.start=start;
+        this.end=end;
+        this.details=(details == null) ? "" : details;
+        this.location=(location == null) ? "" : location;
+        this.people=(people == null) ? "" : people;
+    }
+
+    public String getName(){return name;}
+    public long getStart(){return start;}
+    public long getEnd(){return end;}
+    public String getDetails(){return details;}
+    public String getLocation(){return location;}
+    public String getPeople(){return people;}
+
+    public void setName(String name){
+        this.name=(name == null) ? "" : name;
+    }
+    public void setStart(long start) {this.start=start;}
+    public void setEnd(long end){this.end=end;}
+    public void setDetails(String details){
+        this.details=(details == null) ? "" : details;
+    }
+    public void setLocation(String location){
+        this.location=(location == null) ? "" : location;
+    }
+    public void setPeople(String people){
+        this.people=(people == null) ? "" : people;
+    }
+}
