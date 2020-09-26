@@ -18,13 +18,6 @@ public class Item {
         this.people=(people == null) ? "" : people;
     }
 
-    public String getName(){return name;}
-    public long getStart(){return start;}
-    public long getEnd(){return end;}
-    public String getDetails(){return details;}
-    public String getLocation(){return location;}
-    public String getPeople(){return people;}
-
     public void setName(String name){
         this.name=(name == null) ? "" : name;
     }
@@ -39,4 +32,11 @@ public class Item {
     public void setPeople(String people){
         this.people=(people == null) ? "" : people;
     }
+
+    public String getName(){return name;}
+    public long getStart(){return start;}
+    public long getEnd(){return end;}
+    public String getDetails(){return details;}
+    public String getLocation(){return location;}
+    public String getPeople(){return people;}
 }
