@@ -20,7 +20,7 @@ import com.vaadin.flow.component.textfield.TextField;
 
 
 
-@Route(value = "login", layout = MainView.class)
+@Route(value = "login")
 @PageTitle("Login")
 @CssImport("./styles/views/about/about-view.css")
 @RouteAlias(value = "")
@@ -45,12 +45,8 @@ public class LoginView extends Div {
     public void LoginPanel()
     {
         defaultPanel();
-<<<<<<< Updated upstream
-        add(mainpanel);HorizontalLayout buttonLayout = new HorizontalLayout();
-=======
         add(mainpanel);
         HorizontalLayout buttonLayout = new HorizontalLayout();
->>>>>>> Stashed changes
         Button createAccountButton = new Button("Create New Account");
         buttonLayout.add(loginButton);
         buttonLayout.add(createAccountButton);
@@ -65,15 +61,9 @@ public class LoginView extends Div {
                 password = passwordTextField.getValue();
                 if(accountVerified(username, password))
                 {
-<<<<<<< Updated upstream
-                    UI.getCurrent().navigate(MainView.class); //Goes to MainView
-                    ItemManager.getInstance().setCredentials("");
-=======
                     userError.setVisible(false);
                     UI.getCurrent().navigate(MainView.class); //Goes to MainView
-
-                    //ItemManager.getInstance().setCredentials("");
->>>>>>> Stashed changes
+                    ItemManager.getInstance().setCredentials("");
                 }
                 else
                 {
