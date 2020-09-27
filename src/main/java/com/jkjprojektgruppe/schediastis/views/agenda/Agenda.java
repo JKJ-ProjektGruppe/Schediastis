@@ -1,8 +1,10 @@
 package com.jkjprojektgruppe.schediastis.views.agenda;
 
 import java.awt.*;
+import java.time.DayOfWeek;
 import java.util.Calendar;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -15,19 +17,24 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.component.textfield.TextField;
 import com.jkjprojektgruppe.schediastis.views.items.Item;
+import jdk.javadoc.internal.doclets.formats.html.markup.Table;
+import java.time.LocalDate;
 import java.time.YearMonth;
+import java.time.MonthDay;
 import javax.swing.*;
+import javax.swing.text.html.parser.ContentModel;
 import java.util.ArrayList;
 import java.util.List;
 
-@Route(value = "Main")
+@Route(value = "Calender")
 public class Agenda extends Div{
     private Item[] items;
     enum viewType {monthly, weeklyHorizontal, weeklyVertical, dailyHorizontal, dailyVertical};
     private final Calendar calendar;
     private final String[] months = {"January","February","March","April","May","June","July","August","September","November","December"};
     private final String[] days = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
-    private YearMonth monthOfYear;
+    private YearMonth monthYear;
+    private MonthDay monthDay;
     private VerticalLayout layout = new VerticalLayout();
     private int year;
     private int month;
@@ -36,11 +43,14 @@ public class Agenda extends Div{
 
     public Agenda() {
         calendar = Calendar.getInstance();
-        monthOfYear = YearMonth.now();
-        month = calendar.get(Calendar.MONTH);
+        monthYear = YearMonth.now();
+        monthDay = MonthDay.now();
+        year = monthYear.getYear();
+        month = monthYear.getMonthValue();
+        day = monthDay.getDayOfMonth();
         view = viewType.monthly;
         initializeAgenda(view);
-        //add(layout);
+        add(layout);
     }
 
     private void initializeAgenda(viewType view){
@@ -66,39 +76,64 @@ public class Agenda extends Div{
 
     private void displayMonthlyView(){
         HorizontalLayout first = new HorizontalLayout();
-        for(int x=0;x<7;x++)
-            first.add(new Label(days[x]));
+        for(int x=0;x<7;x++) {
+            Label label = new Label(days[x]);
+            label.setMinWidth("100px");
+            first.add(label);
+        }
         layout.add(first);
 
         HorizontalLayout second = new HorizontalLayout();
-        int dayOfWeek = calendar.get(calendar.DAY_OF_WEEK)-1;
-        for(int y=0;y<dayOfWeek;y++) {
-            second.add(new Label(""));
+        int firstDayOfMonth = (monthYear.atDay(1).getDayOfWeek()).getValue();
+        for(int y=0;y<firstDayOfMonth;y++) {
+            Label label = new Label("");
+            label.setMinWidth("100px");
+            second.add(label);
         }
 
-        int dayOfWeekInMonth = calendar.get(calendar.DAY_OF_WEEK_IN_MONTH);
         int counter = 1;
         HorizontalLayout third = new HorizontalLayout();
         HorizontalLayout fourth = new HorizontalLayout();
         HorizontalLayout fifth = new HorizontalLayout();
         HorizontalLayout sixth = new HorizontalLayout();
 
-        int z = 7-dayOfWeekInMonth;
-        while(counter<=monthOfYear.lengthOfMonth()){
-            if (counter<z)
-                second.add(new Label("" + counter));
-            else
-                if (counter<(z+7))
-                    third.add(new Label(""+counter));
-            else
-                if (counter<(z+14))
-                    fourth.add(new Label(""+counter));
-            else
-                if (counter<(z+21))
-                    fifth.add(new Label(""+counter));
-            else
-                if (counter<(z+28))
-                    sixth.add(new Label(""+counter));
+        int z = 7-firstDayOfMonth;
+        while(counter<=monthYear.lengthOfMonth()) {
+            if (counter <= z){
+                Label label = new Label(""+counter);
+                label.setMinWidth("100px");
+                if(z==day)
+                   label.setTitle("Today");
+                second.add(label);
+            }else
+                if (counter<=(z+7)) {
+                    Label label = new Label(""+counter);
+                    label.setMinWidth("100px");
+                    if(z==day)
+                        label.setTitle("Today");
+                    third.add(label);
+                }else
+                    if (counter<=(z+14)) {
+                        Label label = new Label(""+counter);
+                        label.setMinWidth("100px");
+                        if(z==day)
+                            label.setTitle("Today");
+                        fourth.add(label);
+                    }else
+                        if (counter<=(z+21)) {
+                            Label label = new Label(""+counter);
+                            label.setMinWidth("100px");
+                            if(z==day)
+                                label.setTitle("Today");
+                            fifth.add(label);
+                        }else
+                            if (counter<=(z+28)) {
+                                Label label = new Label(""+counter);
+                                label.setMinWidth("100px");
+                                if(z==day)
+                                    label.setTitle("Today");
+                                sixth.add(label);
+                            }
             counter++;
         }
         layout.add(second);
