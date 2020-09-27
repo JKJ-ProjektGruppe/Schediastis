@@ -21,7 +21,10 @@ public class ItemManager {
 
     private ItemManager(){
         credentials = "";
-        currentItem = null;
+        //currentItem = null;
+        currentItem = new Item("NameHere", 0, 0, "DetailsHere", "LocationHere",
+                "Me, Myself, and I"); //For testing while Agenda and link to ItemView is not yet functional
+                                            //Remove when finished ^^^
     }
 
     public static ItemManager getInstance(){
