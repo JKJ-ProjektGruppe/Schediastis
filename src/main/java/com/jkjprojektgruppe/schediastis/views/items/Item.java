@@ -1,5 +1,10 @@
 package com.jkjprojektgruppe.schediastis.views.items;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 public class Item {
     private String name;
     private long start; //might change to string
@@ -42,4 +47,21 @@ public class Item {
     public String getDetails(){return details;}
     public String getLocation(){return location;}
     public String getPeople(){return people;}
+
+    public String getStartISO(){
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(this.start);
+        df.setTimeZone(cal.getTimeZone());
+        String strISO = df.format(cal.getTime());
+        return strISO;
+    }
+    public String getEndISO(){
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(this.end);
+        df.setTimeZone(cal.getTimeZone());
+        String strISO = df.format(cal.getTime());
+        return strISO;
+    }
 }
