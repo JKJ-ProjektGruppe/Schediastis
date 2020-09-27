@@ -8,6 +8,9 @@ public class Item {
     private String location;
     private String people;
 
+    public Item(){
+        this(null, 0, 0, null, null, null);
+    }
     public Item(String name, long start, long end,
                 String details, String location, String people){
         this.name=(name == null) ? "" : name;
