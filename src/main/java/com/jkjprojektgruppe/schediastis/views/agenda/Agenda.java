@@ -26,11 +26,8 @@ import javax.swing.text.html.parser.ContentModel;
 import java.util.ArrayList;
 import java.util.List;
 
-//<<<<<<< HEAD
-//@Route(value = "Calender")
-//=======
-//@Route(value = "Calendar")
-//>>>>>>> bc86a22001ac660423708fe48ea49bb99c5492f8
+@Route(value = "Calendar", layout = MainView.class)
+@PageTitle("Calendar")
 public class Agenda extends Div{
     private Item[] items;
     enum viewType {monthly, weeklyHorizontal, weeklyVertical, dailyHorizontal, dailyVertical};
