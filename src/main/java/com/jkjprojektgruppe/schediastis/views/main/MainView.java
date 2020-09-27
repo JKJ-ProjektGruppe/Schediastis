@@ -93,6 +93,7 @@ public class MainView extends AppLayout {
 			createTab("About", AboutView.class),
 			//createTab("Calendar", Agenda.class),
 			createTab( "Agenda Item", ItemView.class),
+            createTab("Logout", LogoutView.class)
         };
     }
 
