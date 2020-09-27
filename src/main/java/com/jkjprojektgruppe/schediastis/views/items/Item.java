@@ -49,7 +49,8 @@ public class Item {
     public String getPeople(){return people;}
 
     public String getStartISO(){
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd  |  HH:mm:ss");
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(this.start);
         df.setTimeZone(cal.getTimeZone());
@@ -57,9 +58,9 @@ public class Item {
         return strISO;
     }
     public String getEndISO(){
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd  |  HH:mm:ss");
         Calendar cal = Calendar.getInstance();
-        cal.setTimeInMillis(this.end);
+        /**Uncomment when ready**/ //cal.setTimeInMillis(this.end);
         df.setTimeZone(cal.getTimeZone());
         String strISO = df.format(cal.getTime());
         return strISO;

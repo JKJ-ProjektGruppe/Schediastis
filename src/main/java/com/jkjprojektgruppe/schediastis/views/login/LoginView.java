@@ -6,6 +6,7 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
@@ -36,14 +37,15 @@ public class LoginView extends Div {
     public LoginView() {
 
         setId("login-view");
-        add(new Label("Schediastis"));
+        Label titleLabel = new Label("Schediastis");
+        add(titleLabel);
         LoginPanel();
     }
 
 
 
     public void LoginPanel()
-    {
+    {   mainpanel.add(new Label("Please Login!"));
         defaultPanel();
         add(mainpanel);
         HorizontalLayout buttonLayout = new HorizontalLayout();
@@ -51,12 +53,18 @@ public class LoginView extends Div {
         buttonLayout.add(loginButton);
         buttonLayout.add(createAccountButton);
         mainpanel.add(buttonLayout);
+
         Label userError = new Label("Incorrect password/ username");
         userError.setVisible(false);
         mainpanel.add(userError);
+        Label emptyBoxError = new Label("Please fill out both the username and password");
+        emptyBoxError.setVisible(false);
+        mainpanel.add(emptyBoxError);
+
         loginButton.addClickListener(event -> {
             if(!(usernameTextField.isEmpty()|| passwordTextField.isEmpty()))
             {
+                emptyBoxError.setVisible(false);
                 username = usernameTextField.getValue();
                 password = passwordTextField.getValue();
                 if(accountVerified(username, password))
@@ -73,27 +81,20 @@ public class LoginView extends Div {
             }
             else
             {
-                System.out.println("error");
+                emptyBoxError.setVisible(true);
             }
         });
         createAccountButton.addClickListener(event -> {
             mainpanel.removeAll();
             buttonLayout.removeAll();
             CreateLoginPanel();
-            if(!(usernameTextField.isEmpty()|| passwordTextField.isEmpty())) {
-                username = usernameTextField.getValue();
-                password = passwordTextField.getValue();
-                addToDatabase();
-            }
-
         });
 
     }
 
     public void CreateLoginPanel()
     {
-        Label newLabel = new Label(": Create an Account");
-        add(newLabel);
+        mainpanel.add(new Label(": Create an Account"));
         defaultPanel();
         add(mainpanel);
         HorizontalLayout buttonLayout = new HorizontalLayout();
@@ -102,23 +103,32 @@ public class LoginView extends Div {
         buttonLayout.add(backButton);
         buttonLayout.add(createAccountButton);
         mainpanel.add(buttonLayout);
+
+        Label emptyBoxError = new Label("Please fill out both the username and password");
+        emptyBoxError.setVisible(false);
+        mainpanel.add(emptyBoxError);
+        Label addAccount = new Label("Account added Successfully");
+        addAccount.setVisible(false);
+        mainpanel.add(addAccount);
         createAccountButton.addClickListener(event ->
         {
             if(!(usernameTextField.isEmpty()|| passwordTextField.isEmpty())) {
+                emptyBoxError.setVisible(false);
+                addAccount.setVisible(true);
                 username = usernameTextField.getValue();
                 password = passwordTextField.getValue();
                 addToDatabase();
             }
             else
             {
-                System.out.println("error");
+                addAccount.setVisible(false);
+                emptyBoxError.setVisible(true);
             }
         });
         backButton.addClickListener(event->
         {
             mainpanel.removeAll();
             buttonLayout.removeAll();
-            newLabel.removeAll();
             LoginPanel();
         });
 
@@ -139,6 +149,7 @@ public class LoginView extends Div {
         passwordLayout.add(passwordLabel);
         passwordLayout.add(passwordTextField);
         mainpanel.add(passwordLayout);
+        mainpanel.setAlignItems(FlexComponent.Alignment.CENTER);
     }
 
     public boolean accountVerified(String user, String pass)
