@@ -38,6 +38,7 @@ public class Agenda extends Div{
         monthOfYear = YearMonth.now();
         month = calendar.get(Calendar.MONTH);
         initializeAgenda(view);
+        //add(layout);
     }
 
     private void initializeAgenda(viewType view){
