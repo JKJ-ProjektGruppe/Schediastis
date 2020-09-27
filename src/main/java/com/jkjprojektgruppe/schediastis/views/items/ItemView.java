@@ -9,7 +9,6 @@ import com.jkjprojektgruppe.schediastis.views.main.MainView;
 
 @Route(value = "item", layout = MainView.class)
 @PageTitle("Agenda Item")
-@CssImport("./styles/views/about/about-view.css")
 public class ItemView extends Div {
 
     public ItemView() {
