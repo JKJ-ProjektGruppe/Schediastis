@@ -90,10 +90,17 @@ public class MainView extends AppLayout {
 
     private Component[] createMenuItems() {
         return new Tab[] {
+<<<<<<< Updated upstream
 			createTab("About", AboutView.class),
 			createTab("Calendar", Agenda.class),
 			createTab( "Agenda Item", ItemView.class),
             createTab("Logout", LogoutView.class)
+=======
+            createTab("About", AboutView.class),
+            createTab("Calendar", Agenda.class),
+            createTab( "Agenda Item", ItemView.class),
+            createTab("Logout", LoginView.class)
+>>>>>>> Stashed changes
         };
     }
 
