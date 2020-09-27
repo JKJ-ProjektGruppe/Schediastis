@@ -27,8 +27,8 @@ public class Agenda extends Div{
     private final Calendar calendar;
     private final String[] months = {"January","February","March","April","May","June","July","August","September","November","December"};
     private final String[] days = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
-    private GridLayout layout;
     private YearMonth monthOfYear;
+    private VerticalLayout layout = new VerticalLayout();
     private int year;
     private int month;
     private int day;
@@ -41,6 +41,7 @@ public class Agenda extends Div{
     }
 
     private void initializeAgenda(viewType view){
+        add(layout);
         switch (view){
             case monthly:
                 displayMonthlyView();
@@ -61,45 +62,63 @@ public class Agenda extends Div{
     }
 
     private void displayMonthlyView(){
-
-        layout = new GridLayout(6,7);
+        HorizontalLayout first = new HorizontalLayout();
         for(int x=0;x<7;x++)
-            layout.addLayoutComponent("",new JLabel(days[x]));
+            first.add(new Label(days[x]));
+        layout.add(first);
 
+        HorizontalLayout second = new HorizontalLayout();
         int dayOfWeek = calendar.get(calendar.DAY_OF_WEEK)-1;
         for(int y=0;y<dayOfWeek;y++) {
-            layout.addLayoutComponent("", new JLabel(""));
+            second.add(new Label(""));
         }
+
         int dayOfWeekInMonth = calendar.get(calendar.DAY_OF_WEEK_IN_MONTH);
-        for (int z = 1; z <= monthOfYear.lengthOfMonth(); z++) {
-            JLabel label = new JLabel(""+z);
-            label.setOpaque(true);
-            if (z == dayOfWeekInMonth)
-                label.setBackground(Color.RED);
-            layout.addLayoutComponent("", label);
+        int counter = 1;
+        HorizontalLayout third = new HorizontalLayout();
+        HorizontalLayout fourth = new HorizontalLayout();
+        HorizontalLayout fifth = new HorizontalLayout();
+        HorizontalLayout sixth = new HorizontalLayout();
+
+        while(counter<=monthOfYear.lengthOfMonth()){
+            if (counter<(7-dayOfWeekInMonth))
+                second.add(new Label("" + counter));
+            if (counter<((7-dayOfWeekInMonth)+7))
+                third.add(new Label(""+counter));
+            if (counter<((7-dayOfWeekInMonth)+14))
+                fourth.add(new Label(""+counter));
+            if (counter<((7-dayOfWeekInMonth)+21))
+                fifth.add(new Label(""+counter));
+            if (counter<((7-dayOfWeekInMonth)+28))
+                sixth.add(new Label(""+counter));
+            counter++;
         }
+
+        layout.add(second);
+        layout.add(third);
+        layout.add(fourth);
+        layout.add(fifth);
+        layout.add(sixth);
+        add(layout);
     }
 
     private void displayWeeklyHorizontalView(){
-        layout = new GridLayout(2,7);
 
-        for(int x=0;x<7;x++)
-            layout.addLayoutComponent("",new JLabel(days[x]));
+
     }
 
     private void displayWeeklyVerticalView(){
-        layout = new GridLayout(7,1);
-       
+
+
     }
 
     private void displayDailyHorizontalView(){
 
-        layout = new GridLayout(1,1);
     }
 
     private void displayDailyVerticalView(){
 
-        layout = new GridLayout(1,1);
+
     }
 
     /*
