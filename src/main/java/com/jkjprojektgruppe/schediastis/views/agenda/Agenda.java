@@ -20,7 +20,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Route(value = "Main")
+@Route(value = "Calendar")
 public class Agenda extends Div{
     private Item[] items;
     enum viewType {monthly, weeklyHorizontal, weeklyVertical, dailyHorizontal, dailyVertical};
