@@ -8,12 +8,12 @@ import com.vaadin.flow.router.Route;
 import com.jkjprojektgruppe.schediastis.views.main.MainView;
 
 @Route(value = "item", layout = MainView.class)
-@PageTitle("About")
+@PageTitle("Agenda Item")
 @CssImport("./styles/views/about/about-view.css")
 public class ItemView extends Div {
 
     public ItemView() {
-        setId("about-view");
+        setId("item-view");
         add(new Label("Content placeholder"));
 
     }

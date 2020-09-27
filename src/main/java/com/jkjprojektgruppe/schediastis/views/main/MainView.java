@@ -25,6 +25,8 @@ import com.jkjprojektgruppe.schediastis.views.helloworld.HelloWorldView;
 import com.jkjprojektgruppe.schediastis.views.about.AboutView;
 import com.vaadin.flow.theme.lumo.Lumo;
 import com.jkjprojektgruppe.schediastis.views.login.LoginView;
+import com.jkjprojektgruppe.schediastis.views.items.ItemView;
+import com.jkjprojektgruppe.schediastis.views.agenda.Agenda;
 
 /**
  * The main view is a top-level placeholder for other views.
@@ -88,7 +90,9 @@ public class MainView extends AppLayout {
     private Component[] createMenuItems() {
         return new Tab[] {
             createTab("Hello World", HelloWorldView.class),
-            createTab("About", AboutView.class)
+            createTab("About", AboutView.class),
+            createTab( "ItemView", ItemView.class),
+            createTab("Logout", LoginView.class)
         };
     }
 

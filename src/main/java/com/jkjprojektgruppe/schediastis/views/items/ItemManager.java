@@ -17,9 +17,11 @@ public class ItemManager {
 
     private static ItemManager INSTANCE = null;
     private String credentials;
+    private Item currentItem;
 
     private ItemManager(){
         credentials = "";
+        currentItem = null;
     }
 
     public static ItemManager getInstance(){
@@ -29,6 +31,8 @@ public class ItemManager {
         return INSTANCE;
     }
 
+    public Item getCurrentItem() { return currentItem; }
+    public void setCurrrentItem( Item item ) {this.currentItem = item;}
     public String getCredentials() { return credentials; }
     public void setCredentials(String credentials){ this.credentials = credentials; }
     public List<? extends List<Item>> getAgendaItems( long startDate, long endDate ){
@@ -41,7 +45,7 @@ public class ItemManager {
         }
         return itemGrid;
     }
-
+    /**Database queries to add, remove, update Tables and Entries**/
 }
    /*
     * References:
