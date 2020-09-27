@@ -20,7 +20,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Route(value = "Main")
 public class Agenda extends Div{
     private Item[] items;
     enum viewType {monthly, weeklyHorizontal, weeklyVertical, dailyHorizontal, dailyVertical};
@@ -32,11 +32,13 @@ public class Agenda extends Div{
     private int year;
     private int month;
     private int day;
+    private viewType view;
 
-    public Agenda(viewType view) {
+    public Agenda() {
         calendar = Calendar.getInstance();
         monthOfYear = YearMonth.now();
         month = calendar.get(Calendar.MONTH);
+        view = viewType.monthly;
         initializeAgenda(view);
         //add(layout);
     }
@@ -81,20 +83,24 @@ public class Agenda extends Div{
         HorizontalLayout fifth = new HorizontalLayout();
         HorizontalLayout sixth = new HorizontalLayout();
 
+        int z = 7-dayOfWeekInMonth;
         while(counter<=monthOfYear.lengthOfMonth()){
-            if (counter<(7-dayOfWeekInMonth))
+            if (counter<z)
                 second.add(new Label("" + counter));
-            if (counter<((7-dayOfWeekInMonth)+7))
-                third.add(new Label(""+counter));
-            if (counter<((7-dayOfWeekInMonth)+14))
-                fourth.add(new Label(""+counter));
-            if (counter<((7-dayOfWeekInMonth)+21))
-                fifth.add(new Label(""+counter));
-            if (counter<((7-dayOfWeekInMonth)+28))
-                sixth.add(new Label(""+counter));
+            else
+                if (counter<(z+7))
+                    third.add(new Label(""+counter));
+            else
+                if (counter<(z+14))
+                    fourth.add(new Label(""+counter));
+            else
+                if (counter<(z+21))
+                    fifth.add(new Label(""+counter));
+            else
+                if (counter<(z+28))
+                    sixth.add(new Label(""+counter));
             counter++;
         }
-
         layout.add(second);
         layout.add(third);
         layout.add(fourth);
@@ -104,7 +110,16 @@ public class Agenda extends Div{
     }
 
     private void displayWeeklyHorizontalView(){
+        HorizontalLayout first = new HorizontalLayout();
+        for(int x=0;x<7;x++)
+            first.add(new Label(days[x]));
+        layout.add(first);
 
+        HorizontalLayout second = new HorizontalLayout();
+        int dayOfWeekInMonth = calendar.get(calendar.DAY_OF_WEEK_IN_MONTH);
+        int dayOfWeek = calendar.get(calendar.DAY_OF_WEEK)-1;
+
+        add(layout);
 
     }
 
