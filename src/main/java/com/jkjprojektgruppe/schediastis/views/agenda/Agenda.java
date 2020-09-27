@@ -151,8 +151,7 @@ public class Agenda extends Div{
         layout.add(first);
 
         HorizontalLayout second = new HorizontalLayout();
-        int dayOfWeekInMonth = calendar.get(calendar.DAY_OF_WEEK_IN_MONTH);
-        int dayOfWeek = calendar.get(calendar.DAY_OF_WEEK)-1;
+
 
         add(layout);
 
