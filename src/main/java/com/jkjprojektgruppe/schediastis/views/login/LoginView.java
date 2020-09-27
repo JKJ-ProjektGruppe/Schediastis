@@ -45,11 +45,19 @@ public class LoginView extends Div {
     public void LoginPanel()
     {
         defaultPanel();
+<<<<<<< Updated upstream
         add(mainpanel);HorizontalLayout buttonLayout = new HorizontalLayout();
+=======
+        add(mainpanel);
+        HorizontalLayout buttonLayout = new HorizontalLayout();
+>>>>>>> Stashed changes
         Button createAccountButton = new Button("Create New Account");
         buttonLayout.add(loginButton);
         buttonLayout.add(createAccountButton);
         mainpanel.add(buttonLayout);
+        Label userError = new Label("Incorrect password/ username");
+        userError.setVisible(false);
+        mainpanel.add(userError);
         loginButton.addClickListener(event -> {
             if(!(usernameTextField.isEmpty()|| passwordTextField.isEmpty()))
             {
@@ -57,12 +65,19 @@ public class LoginView extends Div {
                 password = passwordTextField.getValue();
                 if(accountVerified(username, password))
                 {
+<<<<<<< Updated upstream
                     UI.getCurrent().navigate(MainView.class); //Goes to MainView
                     ItemManager.getInstance().setCredentials("");
+=======
+                    userError.setVisible(false);
+                    UI.getCurrent().navigate(MainView.class); //Goes to MainView
+
+                    //ItemManager.getInstance().setCredentials("");
+>>>>>>> Stashed changes
                 }
                 else
                 {
-                    System.out.println("Wrong pass or user");
+                    userError.setVisible(true);
 
                 }
             }
@@ -87,7 +102,8 @@ public class LoginView extends Div {
 
     public void CreateLoginPanel()
     {
-        add(new Label(": Create an Account"));
+        Label newLabel = new Label(": Create an Account");
+        add(newLabel);
         defaultPanel();
         add(mainpanel);
         HorizontalLayout buttonLayout = new HorizontalLayout();
@@ -112,6 +128,7 @@ public class LoginView extends Div {
         {
             mainpanel.removeAll();
             buttonLayout.removeAll();
+            newLabel.removeAll();
             LoginPanel();
         });
 
