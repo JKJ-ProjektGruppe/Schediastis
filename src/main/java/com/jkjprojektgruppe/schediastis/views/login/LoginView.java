@@ -58,7 +58,6 @@ public class LoginView extends Div {
                 if(accountVerified(username, password))
                 {
                     UI.getCurrent().navigate(MainView.class); //Goes to MainView
-
                     ItemManager.getInstance().setCredentials("");
                 }
                 else
