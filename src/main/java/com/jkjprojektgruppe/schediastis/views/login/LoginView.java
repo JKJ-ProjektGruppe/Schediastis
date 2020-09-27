@@ -1,5 +1,6 @@
 package com.jkjprojektgruppe.schediastis.views.login;
 
+import com.jkjprojektgruppe.schediastis.views.items.ItemManager;
 import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -57,6 +58,8 @@ public class LoginView extends Div {
                 if(accountVerified(username, password))
                 {
                     UI.getCurrent().navigate(MainView.class); //Goes to MainView
+
+                    ItemManager.getInstance().setCredentials("");
                 }
                 else
                 {
